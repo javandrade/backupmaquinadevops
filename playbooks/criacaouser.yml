@@ -1,0 +1,40 @@
+---
+- name: Criando user no servidor
+  hosts: all
+  
+
+  tasks:
+   - name: criando user no servidor
+     user: 
+      name: "{{ item }}"
+      shell: /bin/bash
+      createhome: yes
+     with_items:
+      - devops
+      - Java
+      - developer
+      - 4linux 
+   - name: instalando pacotes
+     yum:
+       name: "{{ item }}"
+       state: present
+     with_items:
+       - vim
+       - nano
+       - sls
+       - ccze
+       - bind-utils
+       - epel-realse
+     ignore_errors: yes
+   - name: instalando pacotes
+     apt:
+       name: "{{ item }}"
+       state: present
+     with_items:
+       - vim
+       - nano
+       - sls
+       - ccze
+       - dnsutils
+       - epel-realse
+     ignore_errors: yes

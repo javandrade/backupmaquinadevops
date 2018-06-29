@@ -1,0 +1,21 @@
+---
+- name: Criação de Usuários
+  hosts: all
+  tasks:
+   - name: Criação Users 
+     apt:
+      name: "{{ item }}"
+      state: present
+     with_items:
+      - vim
+      - nano
+     ignore_errors: yes
+
+   - name: instalando pacotes Centos
+     yum:
+      name: "{{ item }}"
+      state: present
+     with_items:
+      - vim
+      - nano
+     ignore_errors: yes
